@@ -1,0 +1,100 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Direction {
+  IN
+  OUT
+}
+
+enum TransferCategory {
+  EXTERNAL
+  INTERNAL
+  ERC20
+  ERC721
+  ERC1155
+}
+
+model Wallet {
+  id        String   @id @default(uuid()) @db.Uuid
+  address   String   @db.VarChar(42)
+  network   String   @db.VarChar(32)
+  label     String?  @db.VarChar(64)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+  version   Int      @default(0)
+
+  transfers Transfer[]
+  syncState WalletSyncState?
+
+  @@unique([address, network])
+  @@map("wallets")
+}
+
+model Transfer {
+  id                  String           @id @default(uuid()) @db.Uuid
+  walletId            String           @map("wallet_id") @db.Uuid
+  network             String           @db.VarChar(32)
+  uniqueId            String           @map("unique_id") @db.VarChar(256)
+  hash                String           @db.VarChar(66)
+  blockNum            BigInt           @map("block_num")
+  blockTs             DateTime?        @map("block_ts") @db.Timestamptz
+  fromAddr            String           @map("from_addr") @db.VarChar(42)
+  toAddr              String?          @map("to_addr") @db.VarChar(42)
+  direction           Direction
+  asset               String?          @db.VarChar(64)
+  category            TransferCategory
+  valueDecimal        Decimal?         @map("value_decimal") @db.Decimal(38, 18)
+  rawValue            String?          @map("raw_value") @db.VarChar(256)
+  rawContractAddr     String?          @map("raw_contract_addr") @db.VarChar(42)
+  rawContractDecimals Int?             @map("raw_contract_decimals")
+  tokenId             String?          @map("token_id") @db.VarChar(256)
+  createdAt           DateTime         @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt           DateTime         @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+  version             Int              @default(0)
+
+  wallet Wallet @relation(fields: [walletId], references: [id])
+
+  @@unique([network, uniqueId])
+  @@index([walletId, createdAt(sort: Desc)])
+  @@index([walletId, asset, createdAt(sort: Desc)])
+  @@index([walletId, category, createdAt(sort: Desc)])
+  @@index([walletId, blockNum(sort: Desc)])
+  @@map("transfers")
+}
+
+model WalletSyncState {
+  walletId       String    @id @map("wallet_id") @db.Uuid
+  lastSyncedBlock BigInt?  @map("last_synced_block")
+  lastSyncedAt   DateTime? @map("last_synced_at") @db.Timestamptz
+  syncInProgress Boolean   @default(false) @map("sync_in_progress")
+  version        Int       @default(0)
+  createdAt      DateTime  @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt      DateTime  @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+
+  wallet Wallet @relation(fields: [walletId], references: [id])
+
+  @@map("wallet_sync_state")
+}
+
+model AddressLabel {
+  id         String   @id @default(uuid()) @db.Uuid
+  network    String   @db.VarChar(32)
+  address    String   @db.VarChar(64)
+  protocol   String   @db.VarChar(64)
+  label      String   @db.VarChar(128)
+  category   String?  @db.VarChar(64)
+  source     String   @db.VarChar(64)
+  confidence Decimal  @db.Decimal(5, 4)
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt  DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz
+
+  @@unique([network, address])
+  @@index([network, protocol])
+  @@map("address_labels")
+}

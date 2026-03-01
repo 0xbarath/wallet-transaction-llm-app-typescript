@@ -1,0 +1,24 @@
+{
+  "transfers": [
+    {
+      "uniqueId": "unique-3",
+      "hash": "0x111222333444555666777888999aaabbbcccdddeeefff000111222333444555",
+      "from": "0x1234567890abcdef1234567890abcdef12345678",
+      "to": "0x9999999999999999999999999999999999999999",
+      "value": 0.01,
+      "asset": "ETH",
+      "category": "internal",
+      "blockNum": "0x1236",
+      "rawContract": {
+        "address": null,
+        "value": "0x2386f26fc10000",
+        "decimal": 18
+      },
+      "metadata": {
+        "blockTimestamp": "2024-01-15T12:00:00Z"
+      },
+      "tokenId": null
+    }
+  ],
+  "pageKey": null
+}

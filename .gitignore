@@ -1,0 +1,26 @@
+dist/
+node_modules/
+.env
+*.js.map
+*.d.ts
+!jest.config.ts
+!jest-e2e.config.ts
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+.env
+
+
+# Prisma
+prisma/*.db
+prisma/migrations/**/migration_lock.toml
+
+# Test
+coverage/

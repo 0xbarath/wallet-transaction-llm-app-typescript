@@ -1,0 +1,43 @@
+{
+  "transfers": [
+    {
+      "uniqueId": "unique-1",
+      "hash": "0xabc123def456abc123def456abc123def456abc123def456abc123def456abc1",
+      "from": "0x1234567890abcdef1234567890abcdef12345678",
+      "to": "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd",
+      "value": 1.5,
+      "asset": "ETH",
+      "category": "external",
+      "blockNum": "0x1234",
+      "rawContract": {
+        "address": null,
+        "value": "0x14d1120d7b160000",
+        "decimal": 18
+      },
+      "metadata": {
+        "blockTimestamp": "2024-01-15T10:30:00Z"
+      },
+      "tokenId": null
+    },
+    {
+      "uniqueId": "unique-2",
+      "hash": "0xdef456abc123def456abc123def456abc123def456abc123def456abc123def4",
+      "from": "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd",
+      "to": "0x1234567890abcdef1234567890abcdef12345678",
+      "value": 100.0,
+      "asset": "USDC",
+      "category": "erc20",
+      "blockNum": "0x1235",
+      "rawContract": {
+        "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "value": "0x05f5e100",
+        "decimal": 6
+      },
+      "metadata": {
+        "blockTimestamp": "2024-01-15T11:00:00Z"
+      },
+      "tokenId": null
+    }
+  ],
+  "pageKey": "page2key"
+}

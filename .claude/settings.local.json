@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:www.alchemy.com)",
+      "WebFetch(domain:docs.alchemy.com)",
+      "WebFetch(domain:www.npmjs.com)",
+      "Bash(yarn install:*)",
+      "Bash(npx prisma:*)",
+      "Bash(npx nest:*)",
+      "Bash(yarn add:*)",
+      "Bash(npx jest:*)",
+      "Bash(docker info:*)",
+      "Bash(docker compose:*)",
+      "Bash(DOCKER_HOST=unix:///$HOME/.docker/run/docker.sock docker compose:*)",
+      "Bash(DOCKER_HOST=unix:///var/run/docker.sock docker ps:*)",
+      "Bash(yarn build:*)",
+      "Bash(yarn test:*)"
+    ]
+  }
+}

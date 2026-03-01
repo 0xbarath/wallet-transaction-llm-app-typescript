@@ -1,0 +1,16 @@
+{
+  "id": "msg-test-123",
+  "type": "message",
+  "model": "claude-sonnet-4-6-20250514",
+  "stop_reason": "end_turn",
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"summary\":\"Transaction sent from 0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa to Aave V3 Pool at 0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2\",\"steps\":[{\"text\":\"User at 0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa supplied assets to Aave V3 Pool at 0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2\",\"evidenceIds\":[\"ev:tx\",\"ev:log:0\",\"ev:label:to\"]}],\"unknowns\":[],\"safetyNotes\":[\"This interpretation is based on event signatures and address labels\"]}"
+    }
+  ],
+  "usage": {
+    "input_tokens": 500,
+    "output_tokens": 200
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "id": "msg-test-prompt-parse-usdc",
+  "type": "message",
+  "model": "claude-sonnet-4-6-20250514",
+  "stop_reason": "end_turn",
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"direction\":null,\"categories\":[],\"assets\":[\"USDC\"],\"minValue\":null,\"maxValue\":null,\"counterparty\":null,\"startTime\":null,\"endTime\":null,\"sort\":\"createdAt_desc\",\"limit\":null,\"needsClarification\":[]}"
+    }
+  ],
+  "usage": {
+    "input_tokens": 300,
+    "output_tokens": 100
+  }
+}

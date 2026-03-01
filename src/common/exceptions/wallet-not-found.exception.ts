@@ -1,0 +1,6 @@
+export class WalletNotFoundException extends Error {
+  constructor(walletId: string) {
+    super(`Wallet not found: ${walletId}`);
+    this.name = 'WalletNotFoundException';
+  }
+}

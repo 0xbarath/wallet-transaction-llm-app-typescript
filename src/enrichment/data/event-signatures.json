@@ -1,0 +1,10 @@
+{
+  "0x2b627736bca15cd5381dcf80b0bf11fd197d01a037c52b927a881a10fb73ba61": { "name": "Supply", "protocol": "aave-v3", "operation": "aave_supply" },
+  "0x3115d1449a7b732c986cba18244e897a145df0b3b24834cdfb5e56c0ead1bb63": { "name": "Withdraw", "protocol": "aave-v3", "operation": "aave_withdraw" },
+  "0xb3d084820fb1a9decffb176436bd02558d15fac9b0ddfed8c465bc7359d7dce0": { "name": "Borrow", "protocol": "aave-v3", "operation": "aave_borrow" },
+  "0xa534c8dbe71f871f9f3f77571e29552c8e0a980f71a5d6b7928d3b2b6391cb20": { "name": "Repay", "protocol": "aave-v3", "operation": "aave_repay" },
+  "0xe6c1892f8d36012ee2af5bb563f321bc969e4d22593e583b728c888788bc4313": { "name": "LiquidationCall", "protocol": "aave-v3", "operation": "aave_liquidation" },
+  "0x631042c832b07452973831137f2d73e395028b44b250dedc5abb0ee766e168ac": { "name": "FlashLoan", "protocol": "aave-v3", "operation": "aave_flashloan" },
+  "0xd78ad95fa46c994b6551d0da85fc275fe613ce37657fb8d5e3d130840159d822": { "name": "Swap", "protocol": "uniswap-v2", "operation": "uniswap_swap" },
+  "0xc42079f94a6350d7e6235f29174924f928cc2ac818eb64fed8004e115fbcca67": { "name": "Swap", "protocol": "uniswap-v3", "operation": "uniswap_swap" }
+}
