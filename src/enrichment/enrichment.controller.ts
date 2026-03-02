@@ -1,10 +1,12 @@
 import { Body, Controller, Post, UseGuards } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse, ApiSecurity } from '@nestjs/swagger';
 import { AdminEnrichmentGuard } from '../common/guards/admin-enrichment.guard';
 import { TransactionExplainService } from './transaction-explain.service';
 import { ExplainRequestDto } from './dto/explain-request.dto';
 
 @ApiTags('enrichment')
+@ApiSecurity('auth')
+@ApiSecurity('role')
 @Controller('v1/transactions')
 export class EnrichmentController {
   constructor(private readonly explainService: TransactionExplainService) {}

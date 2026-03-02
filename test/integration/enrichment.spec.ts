@@ -104,4 +104,33 @@ describe('Enrichment (Integration)', () => {
       .send({ txHash: 'invalid' })
       .expect(400);
   });
+
+  it('should return ENRICHED without explanation when explain=false', async () => {
+    // Mock Alchemy receipt only — no Anthropic mock (LLM should not be called)
+    nock('https://eth-mainnet.g.alchemy.com')
+      .post('/v2/test-api-key', (body: any) => body.method === 'eth_getTransactionReceipt')
+      .reply(200, { jsonrpc: '2.0', id: 1, result: receipt });
+
+    const res = await request(app.getHttpServer())
+      .post('/v1/transactions/explain')
+      .set(adminHeaders)
+      .send({ txHash, explain: false })
+      .expect(200);
+
+    expect(res.body.status).toBe('ENRICHED');
+    expect(res.body.explanation).toBeNull();
+    expect(res.body.operation).toBeDefined();
+    expect(res.body.evidence).toBeDefined();
+    expect(Array.isArray(res.body.evidence)).toBe(true);
+    expect(res.body.evidence.length).toBeGreaterThan(0);
+  });
+
+  it('should reject missing role header with default user role (403)', async () => {
+    // Only send wallet access header, no X-Role → defaults to 'user' → 403
+    await request(app.getHttpServer())
+      .post('/v1/transactions/explain')
+      .send({ txHash })
+      .set({ 'X-Auth-WalletAccess': 'allow' })
+      .expect(403);
+  });
 });

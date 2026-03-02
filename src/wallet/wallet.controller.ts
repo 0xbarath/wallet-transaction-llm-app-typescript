@@ -1,5 +1,5 @@
 import { Body, Controller, Param, Patch, Post, HttpCode } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse, ApiSecurity } from '@nestjs/swagger';
 import { WalletService } from './wallet.service';
 import { RegisterWalletDto } from './dto/register-wallet.dto';
 import { UpdateWalletDto } from './dto/update-wallet.dto';
@@ -7,6 +7,8 @@ import { SyncService } from '../sync/sync.service';
 import { SyncRequestDto } from '../sync/dto/sync-request.dto';
 
 @ApiTags('wallets')
+@ApiSecurity('auth')
+@ApiSecurity('role')
 @Controller('v1/wallets')
 export class WalletController {
   constructor(

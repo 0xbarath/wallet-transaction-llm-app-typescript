@@ -37,7 +37,7 @@ Client
   ├─ POST /v1/wallets                   → WalletService
   ├─ POST /v1/wallets/{id}/sync         → SyncService → AlchemyService
   ├─ GET  /v1/transactions              → TransactionQueryService
-  ├─ POST /v1/transactions:query        → PromptParserService (LLM) → TransactionQueryService
+  ├─ POST /v1/transactions/query        → PromptParserService (LLM) → TransactionQueryService
   └─ POST /v1/transactions/explain      → TransactionExplainService
                                               ├─ EvidenceCollectorService  (Alchemy SDK)
                                               ├─ ProtocolLabelerService    (address_labels DB)
@@ -851,7 +851,7 @@ The `fetchAllTransfers()` pagination loop continues until Alchemy stops returnin
 
 Compare with `LlmExplainerService` which correctly handles this: `this.client = apiKey ? new Anthropic({ apiKey }) : null` and returns `null` when the client is absent.
 
-**Impact:** Calling `POST /v1/transactions:query` without an Anthropic API key produces an unhelpful SDK error instead of a clear "LLM features are disabled" response.
+**Impact:** Calling `POST /v1/transactions/query` without an Anthropic API key produces an unhelpful SDK error instead of a clear "LLM features are disabled" response.
 
 **Fix:** Apply the same guard pattern as `LlmExplainerService` — set `this.client = null` when no API key is configured, and throw a descriptive `PromptParseException` from `parse()` when the client is null.
 

@@ -89,7 +89,7 @@ describe('Prompt Query (Integration)', () => {
       .reply(200, parseEthOut);
 
     const res = await request(app.getHttpServer())
-      .post('/v1/transactions:query')
+      .post('/v1/transactions/query')
       .set(authHeaders)
       .send({ walletId, prompt: 'show outgoing ETH transactions' })
       .expect(200);
@@ -107,7 +107,7 @@ describe('Prompt Query (Integration)', () => {
       .reply(200, parseUsdc);
 
     const res = await request(app.getHttpServer())
-      .post('/v1/transactions:query')
+      .post('/v1/transactions/query')
       .set(authHeaders)
       .send({ walletId, prompt: 'show USDC transfers' })
       .expect(200);
@@ -118,7 +118,7 @@ describe('Prompt Query (Integration)', () => {
 
   it('should reject missing walletId (400)', async () => {
     await request(app.getHttpServer())
-      .post('/v1/transactions:query')
+      .post('/v1/transactions/query')
       .set(authHeaders)
       .send({ prompt: 'show ETH' })
       .expect(400);
@@ -126,7 +126,7 @@ describe('Prompt Query (Integration)', () => {
 
   it('should reject empty prompt (400)', async () => {
     await request(app.getHttpServer())
-      .post('/v1/transactions:query')
+      .post('/v1/transactions/query')
       .set(authHeaders)
       .send({ walletId, prompt: '' })
       .expect(400);

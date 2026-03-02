@@ -15,7 +15,9 @@
       "Bash(DOCKER_HOST=unix:///$HOME/.docker/run/docker.sock docker compose:*)",
       "Bash(DOCKER_HOST=unix:///var/run/docker.sock docker ps:*)",
       "Bash(yarn build:*)",
-      "Bash(yarn test:*)"
+      "Bash(yarn test:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npm run:*)"
     ]
   }
 }

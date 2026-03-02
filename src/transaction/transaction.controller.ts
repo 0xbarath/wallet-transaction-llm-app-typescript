@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
-import { ApiTags, ApiOperation } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiSecurity } from '@nestjs/swagger';
 import { TransactionQueryService } from './transaction-query.service';
 import { PromptParserService } from './prompt-parser.service';
 import { QueryParamsDto } from './dto/query-params.dto';
@@ -8,6 +8,8 @@ import { normalizeQuerySpec } from './types/query-spec';
 import { Role } from '../common/decorators/role.decorator';
 
 @ApiTags('transactions')
+@ApiSecurity('auth')
+@ApiSecurity('role')
 @Controller('v1/transactions')
 export class TransactionController {
   constructor(
@@ -43,7 +45,7 @@ export class TransactionController {
     return this.queryService.query(spec, role);
   }
 
-  @Post(':query')
+  @Post('query')
   @ApiOperation({ summary: 'Natural language transaction query' })
   async promptQuery(@Body() dto: PromptQueryDto, @Role() role: string) {
     const spec = await this.promptParser.parse(dto.prompt, dto.walletId, role);

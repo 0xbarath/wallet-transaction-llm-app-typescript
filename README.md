@@ -120,7 +120,7 @@ curl "localhost:3000/v1/transactions?walletId={id}&limit=10" \
 ### Natural language query
 
 ```bash
-curl -X POST localhost:3000/v1/transactions:query \
+curl -X POST localhost:3000/v1/transactions/query \
   -H "X-Auth-WalletAccess: allow" \
   -H "Content-Type: application/json" \
   -d '{"walletId":"...","prompt":"show outgoing USDC above 100 last 7 days"}'
