@@ -23,7 +23,10 @@ async function bootstrap() {
     .setDescription('Wallet transaction history service with LLM-powered enrichment')
     .setVersion('1.0')
     .addApiKey({ type: 'apiKey', name: 'X-Auth-WalletAccess', in: 'header' }, 'auth')
-    .addApiKey({ type: 'apiKey', name: 'X-Role', in: 'header', description: 'Role header (admin or user)' }, 'role')
+    .addApiKey(
+      { type: 'apiKey', name: 'X-Role', in: 'header', description: 'Role header (admin or user)' },
+      'role',
+    )
     .build();
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api-docs', app, document);

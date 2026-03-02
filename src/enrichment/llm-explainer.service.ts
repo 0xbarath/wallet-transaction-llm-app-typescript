@@ -92,10 +92,7 @@ OUTPUT SCHEMA:
     const hints =
       protocolHints.length > 0
         ? protocolHints
-            .map(
-              (h) =>
-                `${h.address} → ${h.protocol} "${h.label}" (confidence: ${h.confidence})`,
-            )
+            .map((h) => `${h.address} → ${h.protocol} "${h.label}" (confidence: ${h.confidence})`)
             .join('\n')
         : 'None';
 

@@ -94,8 +94,7 @@ describe('Evidence Validation (LlmExplainer)', () => {
 
     it('should fail when phantom address detected', () => {
       const explanation = {
-        summary:
-          'Transaction sent to 0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef',
+        summary: 'Transaction sent to 0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef',
         steps: [{ text: 'Step', evidenceIds: ['ev:tx'] }],
         unknowns: [],
         safetyNotes: [],
@@ -110,8 +109,7 @@ describe('Evidence Validation (LlmExplainer)', () => {
 
     it('should handle ABI-encoded addresses in topics', () => {
       const explanation = {
-        summary:
-          'User 0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa supplied to Aave V3',
+        summary: 'User 0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa supplied to Aave V3',
         steps: [{ text: 'Step', evidenceIds: ['ev:log:0'] }],
         unknowns: [],
         safetyNotes: [],

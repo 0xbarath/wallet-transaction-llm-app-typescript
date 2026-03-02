@@ -20,18 +20,12 @@ describe('QueryBuilder', () => {
     });
 
     it('should add category filter for admin', () => {
-      const where = buildWhereClause(
-        { ...baseSpec, categories: ['INTERNAL', 'EXTERNAL'] },
-        true,
-      );
+      const where = buildWhereClause({ ...baseSpec, categories: ['INTERNAL', 'EXTERNAL'] }, true);
       expect(where.category).toEqual({ in: ['INTERNAL', 'EXTERNAL'] });
     });
 
     it('should strip INTERNAL for non-admin', () => {
-      const where = buildWhereClause(
-        { ...baseSpec, categories: ['INTERNAL', 'EXTERNAL'] },
-        false,
-      );
+      const where = buildWhereClause({ ...baseSpec, categories: ['INTERNAL', 'EXTERNAL'] }, false);
       expect(where.category).toEqual({ in: ['EXTERNAL'] });
     });
 
@@ -51,10 +45,7 @@ describe('QueryBuilder', () => {
     });
 
     it('should add value range', () => {
-      const where = buildWhereClause(
-        { ...baseSpec, minValue: '1.0', maxValue: '100.0' },
-        false,
-      );
+      const where = buildWhereClause({ ...baseSpec, minValue: '1.0', maxValue: '100.0' }, false);
       expect(where.valueDecimal).toBeDefined();
     });
 

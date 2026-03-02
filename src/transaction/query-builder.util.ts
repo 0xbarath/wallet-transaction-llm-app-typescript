@@ -12,9 +12,7 @@ export function buildWhereClause(spec: QuerySpec, isAdmin: boolean): Prisma.Tran
   }
 
   if (spec.categories && spec.categories.length > 0) {
-    const filtered = isAdmin
-      ? spec.categories
-      : spec.categories.filter((c) => c !== 'INTERNAL');
+    const filtered = isAdmin ? spec.categories : spec.categories.filter((c) => c !== 'INTERNAL');
     if (filtered.length > 0) {
       where.category = { in: filtered as any[] };
     }
@@ -81,9 +79,7 @@ export function buildWhereClause(spec: QuerySpec, isAdmin: boolean): Prisma.Tran
   return where;
 }
 
-export function buildOrderBy(
-  sort?: string,
-): Prisma.TransferOrderByWithRelationInput[] {
+export function buildOrderBy(sort?: string): Prisma.TransferOrderByWithRelationInput[] {
   if (sort === 'createdAt_asc') {
     return [{ createdAt: 'asc' }, { id: 'asc' }];
   }

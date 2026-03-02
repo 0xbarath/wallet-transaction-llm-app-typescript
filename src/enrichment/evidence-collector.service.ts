@@ -54,7 +54,8 @@ export class EvidenceCollectorService {
     const logs = receipt.logs.slice(0, MAX_LOGS);
     for (let i = 0; i < logs.length; i++) {
       const log = logs[i];
-      const data = log.data.length > MAX_DATA_LENGTH ? log.data.substring(0, MAX_DATA_LENGTH) : log.data;
+      const data =
+        log.data.length > MAX_DATA_LENGTH ? log.data.substring(0, MAX_DATA_LENGTH) : log.data;
       items.push({
         id: `ev:log:${i}`,
         type: 'log',

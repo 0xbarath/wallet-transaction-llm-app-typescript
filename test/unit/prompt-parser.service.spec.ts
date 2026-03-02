@@ -132,9 +132,9 @@ describe('PromptParserService', () => {
       needsClarification: [],
     });
 
-    await expect(
-      service.parse('show internal transfers', 'wallet-1', 'user'),
-    ).rejects.toThrow(ForbiddenCategoryException);
+    await expect(service.parse('show internal transfers', 'wallet-1', 'user')).rejects.toThrow(
+      ForbiddenCategoryException,
+    );
   });
 
   it('should allow INTERNAL for admin', async () => {

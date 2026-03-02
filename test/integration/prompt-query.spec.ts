@@ -84,9 +84,7 @@ describe('Prompt Query (Integration)', () => {
   const authHeaders = { 'X-Auth-WalletAccess': 'allow' };
 
   it('should parse "show outgoing ETH" and return results', async () => {
-    nock('https://api.anthropic.com')
-      .post('/v1/messages')
-      .reply(200, parseEthOut);
+    nock('https://api.anthropic.com').post('/v1/messages').reply(200, parseEthOut);
 
     const res = await request(app.getHttpServer())
       .post('/v1/transactions/query')
@@ -102,9 +100,7 @@ describe('Prompt Query (Integration)', () => {
   });
 
   it('should parse "show USDC" and return results', async () => {
-    nock('https://api.anthropic.com')
-      .post('/v1/messages')
-      .reply(200, parseUsdc);
+    nock('https://api.anthropic.com').post('/v1/messages').reply(200, parseUsdc);
 
     const res = await request(app.getHttpServer())
       .post('/v1/transactions/query')

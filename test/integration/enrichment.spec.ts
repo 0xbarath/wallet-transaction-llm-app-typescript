@@ -59,9 +59,7 @@ describe('Enrichment (Integration)', () => {
       .reply(200, { jsonrpc: '2.0', id: 1, result: receipt });
 
     // Mock Anthropic
-    nock('https://api.anthropic.com')
-      .post('/v1/messages')
-      .reply(200, explainResponse);
+    nock('https://api.anthropic.com').post('/v1/messages').reply(200, explainResponse);
 
     const res = await request(app.getHttpServer())
       .post('/v1/transactions/explain')

@@ -31,7 +31,9 @@ export class PromptParserService {
     }
 
     if (!this.client) {
-      throw new PromptParseException('Prompt parsing unavailable — no Anthropic API key configured');
+      throw new PromptParseException(
+        'Prompt parsing unavailable — no Anthropic API key configured',
+      );
     }
 
     const today = new Date().toISOString().split('T')[0];
@@ -44,8 +46,7 @@ export class PromptParserService {
       messages: [{ role: 'user', content: prompt }],
     });
 
-    const text =
-      response.content[0].type === 'text' ? response.content[0].text : '';
+    const text = response.content[0].type === 'text' ? response.content[0].text : '';
     const parsed = this.parseJson(text);
     return this.validate(parsed, walletId, role);
   }

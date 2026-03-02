@@ -146,9 +146,6 @@ describe('Transaction Query (Integration)', () => {
   });
 
   it('should reject missing walletId (400)', async () => {
-    await request(app.getHttpServer())
-      .get('/v1/transactions')
-      .set(authHeaders)
-      .expect(400);
+    await request(app.getHttpServer()).get('/v1/transactions').set(authHeaders).expect(400);
   });
 });

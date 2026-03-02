@@ -108,7 +108,10 @@ export class SyncService {
       status: 'COMPLETED',
       transfersSynced,
       lastSyncedBlock: maxBlock?.toString() ?? null,
-      lastSyncedAt: transfersSynced > 0 ? new Date().toISOString() : (syncState.lastSyncedAt?.toISOString() ?? null),
+      lastSyncedAt:
+        transfersSynced > 0
+          ? new Date().toISOString()
+          : (syncState.lastSyncedAt?.toISOString() ?? null),
     };
   }
 
@@ -208,11 +211,7 @@ export class SyncService {
     }
   }
 
-  private buildResponse(
-    walletId: string,
-    transfersSynced: number,
-    syncState: any,
-  ): SyncResponse {
+  private buildResponse(walletId: string, transfersSynced: number, syncState: any): SyncResponse {
     return {
       walletId,
       status: 'COMPLETED',
